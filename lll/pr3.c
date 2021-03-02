@@ -54,8 +54,8 @@ void dis()
 struct node* p1;
 for(i=0;i<4;i++)
 {
-printf("%u ->",head+i);
 p1=head[i];
+printf("%u->",head[i]);
 while(p1!=NULL)
 {
 printf("%d\t",p1->data);
