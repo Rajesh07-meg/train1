@@ -7,6 +7,7 @@ int n,i=0,j=0,k;
 char *p,r[30];
 printf("enter the name\n");
 scanf("%s",r);
+  
 n=strlen(r);
 
 p=(char *)malloc(sizeof(char*)*n);
