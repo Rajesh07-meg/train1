@@ -1,0 +1,48 @@
+1.
+create or replace procedure pro_emp
+ (eno out number)
+is
+ CURSOR ecur 
+	IS select  employee_id d,salary s, job_id j from employees 
+	where employee_id=eno;
+er EXCEPTION;  
+begin
+    FOR i in ecur loop
+    if eno^=i.d then raise er;
+    end if;
+      dbms_output.put_line(i.j||'earns'||i.s||'for'||eno);
+    end loop;
+  EXCEPTION 
+  WHEN er THEN
+     dbms_output.put_line(eno||' Dont exist!');
+end;
+/
+
+
+2.
+declare
+ sal employees.salary%type;
+ bonuss number;
+ begin
+ select salary into sal from employees where employee_id=&empno;
+ if sal<5000 then
+    dbms_output.put_line('bonus '||sal*.1);
+ elsif sal>5000 and sal<10000 then
+     dbms_output.put_line('bonuss '||sal*.15);
+ elsif sal>10000 then
+    dbms_output.put_line('bonuss '||sal*.2);
+ end if;
+ end;
+ /
+
+3.
+create or replace procedure Pro_Dept
+is
+ CURSOR DEPT_CUR 
+	IS select  * from departments;   
+begin
+    FOR i in DEPT_CUR loop
+     dbms_output.put_line(i.department_id||' '||i.department_name||' '||i.manager_id||' '||i.location_id);
+    end loop;
+end;
+/
